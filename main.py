@@ -18,6 +18,8 @@ from luma.oled.device import ssd1306
 
 from PIL import ImageFont
 
+from drawings import draw_pacman
+
 # -----------------------------
 # BUTTON
 # -----------------------------
@@ -75,19 +77,10 @@ def get_cpu_temp() -> float:
 # DISPLAY UPDATE
 # -----------------------------
 
-def draw_smiley(draw):
-    # Face outline — center (64, 32), radius 28
-    draw.ellipse((36, 4, 92, 60), outline="white")
-    # Eyes
-    draw.ellipse((49, 18, 57, 26), fill="white")  # left eye
-    draw.ellipse((71, 18, 79, 26), fill="white")  # right eye
-    # Smile — arc of a circle centered at (64, 36), radius 14
-    draw.arc((50, 24, 78, 52), start=25, end=155, fill="white")
-
 def update_oled():
     with canvas(oled) as draw:
         if display_on:
-            draw_smiley(draw)
+            draw_pacman(draw)
 
 def update_matrix():
     with canvas(matrix) as draw:
