@@ -4,10 +4,10 @@ Code used to power my small displays at home
 
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
   <div>
-    ![Preview](images/preview.jpg)
+    <img src="images/preview.jpg" alt="Preview">
   </div>
   <div>
-    ![Bad Apple Preview](images/badapple.gif)
+    <img src="images/badapple.gif" alt="Bad Apple Preview">
   </div>
 </div>
 
