@@ -7,11 +7,11 @@ Code used to power my small displays at home
 ## Hardware
 
 - Raspberry Pi
-- 2× MAX7219 8×8 LED Matrix modules (daisy-chained)
+- 2× MAX7219 8×8 LED Matrix modules (daisy-chained) (SPI)
+- 0.9 inch OLED display (I2C)
 - Jumper wires
-- SPI interface enabled on the Raspberry Pi
 
-The two LED panels are connected in **series**, so the Raspberry Pi only connects to the **first module**.
+The two LED panels are connected in series, so the Raspberry Pi only connects to the first module.
 
 ---
 
@@ -29,7 +29,7 @@ The two LED panels are connected in **series**, so the Raspberry Pi only connect
 
 ## SPI Interface
 
-The display uses **SPI0** on the Raspberry Pi.
+The display uses SPI0 on the Raspberry Pi.
 
 ```
 MOSI → GPIO10 (Pin 19)
@@ -58,8 +58,8 @@ Panel 1 DIN  ← Raspberry Pi MOSI
 Panel 1 DOUT → Panel 2 DIN
 ```
 
-Only the **first module connects to the Pi**.  
-The second module receives data from the first via **DOUT → DIN**.
+Only the first module connects to the Pi.  
+The second module receives data from the first via `DOUT → DIN`.
 
 ---
 
@@ -96,6 +96,14 @@ GPIO8  (24)   --->  CS
 ## Setup
 
 This project is powered by a raspberry pi, using python to drive the gpio, spi, and i2c interfaces.
+
+Note: enable I2C SPI interface enabled on the Raspberry Pi
+
+```bash
+sudo raspi-config
+Interface Options → I2C → Enable
+Interface Options → SPI → Enable
+```
 
 Install the system-wide packages.
 
