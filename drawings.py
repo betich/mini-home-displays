@@ -78,3 +78,57 @@ def animate_pacman(oled, is_active):
             x, pellets = -_SIZE, list(_PELLET_XS)
 
         time.sleep(0.05)
+
+
+# ---- Bad Apple ----
+
+_BA_W, _BA_H = 128, 64
+_BA_FPS = 30
+
+
+def animate_video(oled, is_active, npy_path="videos/badapple.npy"):
+    """Play a video from a packed numpy file produced by convert_video.py.
+    is_active: callable returning bool — pauses and clears when False.
+    """
+    import numpy as np
+    from PIL import Image as PILImage
+
+    try:
+        data = np.load(npy_path)      # shape: (n_frames, 1024)
+    except FileNotFoundError:
+        print(f"[animate_video] {npy_path} not found — run convert_video.py first. Falling back to pacman.")
+        return animate_pacman(oled, is_active)  # fallback
+    n = len(data)
+    if n == 0:
+        print(f"[animate_video] {npy_path} has 0 frames — re-run convert_video.py. Falling back to pacman.")
+        return animate_pacman(oled, is_active)  # fallback
+    frame_delay = 1.0 / _BA_FPS
+    i = 0
+    was_active = True
+
+    while True:
+        active = is_active()
+
+        if not active:
+            if was_active:
+                oled.clear()
+                was_active = False
+            time.sleep(0.1)
+            continue
+
+        if not was_active:
+            i = 0
+            was_active = True
+
+        t0 = time.monotonic()
+
+        pixels = np.unpackbits(data[i]).reshape(_BA_H, _BA_W)
+        img = PILImage.fromarray(pixels * 255).convert("1")
+        oled.display(img)
+
+        i = (i + 1) % n
+
+        dt = time.monotonic() - t0
+        sleep = frame_delay - dt
+        if sleep > 0:
+            time.sleep(sleep)

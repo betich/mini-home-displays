@@ -3,4 +3,5 @@ luma.core
 luma.led-matrix
 luma.oled
 Pillow
+numpy
 # lgpio is installed system-wide via python3-lgpio

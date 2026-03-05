@@ -161,3 +161,9 @@ then enable and start the service:
 sudo systemctl enable display.service
 sudo systemctl start display.service
 ```
+
+---
+
+## Credits
+
+- **Bad Apple!!** — original animation by [Alstroemeria Records](https://www.nicovideo.jp/watch/sm8628149). Frames sourced from the [Internet Archive image sequence](https://archive.org/details/bad_apple_is.7z).

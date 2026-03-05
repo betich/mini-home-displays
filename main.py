@@ -18,7 +18,7 @@ from luma.oled.device import ssd1306
 
 from PIL import ImageFont
 
-from drawings import animate_pacman
+from drawings import animate_video
 
 # -----------------------------
 # BUTTON
@@ -116,7 +116,7 @@ thread = threading.Thread(target=display_loop)
 thread.daemon = True
 thread.start()
 
-oled_thread = threading.Thread(target=animate_pacman, args=(oled, lambda: display_on))
+oled_thread = threading.Thread(target=animate_video, args=(oled, lambda: display_on))
 oled_thread.daemon = True
 oled_thread.start()
 
