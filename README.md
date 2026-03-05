@@ -4,6 +4,8 @@ Code used to power my small displays at home
 
 ![Preview](images/preview.jpg)
 
+![Bad Apple Preview](images/badapple.gif)
+
 ## Hardware
 
 - Raspberry Pi
