@@ -18,7 +18,7 @@ from luma.oled.device import ssd1306
 
 from PIL import ImageFont
 
-from drawings import draw_pacman
+from drawings import animate_pacman
 
 # -----------------------------
 # BUTTON
@@ -77,11 +77,6 @@ def get_cpu_temp() -> float:
 # DISPLAY UPDATE
 # -----------------------------
 
-def update_oled():
-    with canvas(oled) as draw:
-        if display_on:
-            draw_pacman(draw)
-
 def update_matrix():
     with canvas(matrix) as draw:
         if display_on:
@@ -107,7 +102,6 @@ def toggle_displays():
     global display_on
     display_on = not display_on
     update_matrix()
-    update_oled()
 
 button.when_pressed = toggle_displays
 
@@ -116,11 +110,14 @@ button.when_pressed = toggle_displays
 # -----------------------------
 
 last_temp = get_cpu_temp()
-update_oled()
 update_matrix()
 
 thread = threading.Thread(target=display_loop)
 thread.daemon = True
 thread.start()
+
+oled_thread = threading.Thread(target=animate_pacman, args=(oled, lambda: display_on))
+oled_thread.daemon = True
+oled_thread.start()
 
 pause()
