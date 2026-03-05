@@ -2,9 +2,14 @@
 
 Code used to power my small displays at home
 
-![Preview](images/preview.jpg)
-
-![Bad Apple Preview](images/badapple.gif)
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+  <div>
+    ![Preview](images/preview.jpg)
+  </div>
+  <div>
+    ![Bad Apple Preview](images/badapple.gif)
+  </div>
+</div>
 
 ## Hardware
 
