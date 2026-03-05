@@ -8,7 +8,7 @@ Code used to power my small displays at home
 
 - Raspberry Pi
 - 2× MAX7219 8×8 LED Matrix modules (daisy-chained) (SPI)
-- 0.9 inch OLED display (I2C)
+- SSD1306 0.96 inch OLED display (I2C)
 - Jumper wires
 
 The two LED panels are connected in series, so the Raspberry Pi only connects to the first module.
